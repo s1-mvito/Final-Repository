@@ -1,0 +1,11 @@
+Lab 8:
+
+sed 's/*//' ~/lab04-$MYGIT/NOX/NOX.homologs.fas > ~/lab08-$MYGIT/NOX/NOX.homologs.fas
+rpsblast -query ~/lab08-$MYGIT/NOX/NOX.homologs.fas -db ~/data/Pfam/Pfam -out ~/lab08-$MYGIT/NOX/NOX.rps-blast.out  -outfmt "6 qseqid qlen qstart qend evalue stitle" -evalue .0000000001
+cp ~/lab05-$MYGIT/NOX/NOX.homologsf.al.mid.treefile ~/lab08-$MYGIT/NOX
+Rscript  --vanilla ~/lab08-$MYGIT/plotTreeAndDomains.r ~/lab08-$MYGIT/NOX/NOX.homologsf.al.mid.treefile ~/lab08-$MYGIT/NOX/NOX.rps-blast.out ~/lab08-$MYGIT/NOX/NOX.tree.rps.pdf
+mlr --inidx --ifs "\t" --opprint  cat ~/lab08-$MYGIT/NOX/NOX.rps-blast.out | tail -n +2 | less -S
+cut -f 1 ~/lab08-$MYGIT/NOX/NOX.rps-blast.out | sort | uniq -c
+cut -f 6 ~/lab08-$MYGIT/NOX/NOX.rps-blast.out | sort | uniq -c
+awk '{a=$4-$3;print $1,'\t',a;}' ~/lab08-$MYGIT/NOX/NOX.rps-blast.out |  sort  -k2nr
+cut -f 1,5 -d $'\t' ~/lab08-$MYGIT/NOX/NOX.rps-blast.out 
