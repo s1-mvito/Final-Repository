@@ -142,7 +142,7 @@ cut -f 1 NOX.rps-blast.out | sort | uniq -c
 Count domain types:
 cut -f 6 NOX.rps-blast.out | sort | uniq -c
 Calculate and sort domain lengths:
-awk "{a=$4-$3;print $1,"\t",a;}" NOX.rps-blast.out | sort -k2nr
+awk "a=$4-$3;print $1,"\t",a;" NOX.rps-blast.out | sort -k2nr
 Extract E-values:
 cut -f 1,5 -d $'\t' NOX.rps-blast.out
 
