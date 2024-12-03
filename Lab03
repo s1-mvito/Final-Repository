@@ -1,0 +1,11 @@
+Lab 3:
+
+ncbi-acc-download -F fasta -m protein "NP_058627"
+less NP_058627.fa 
+blastp -db ../allprotein.fas -query NP_058627.fa -outfmt 0 -max_hsps 1 -out NOX.blastp.typical.out
+less NOX.blastp.typical.out 
+less -S NOX.blastp.detail.out 
+awk '{if ($6< 1e-30)print $1 }' NOX.blastp.detail.out > NOX.blastp.detail.filtered.out
+wc -l NOX.blastp.detail.filtered.out
+grep -o -E "^[A-Z]\.[a-z]+" NOX.blastp.detail.filtered.out  | sort | uniq -c
+grep -c H.sapiens globins.blastp.detail.out
