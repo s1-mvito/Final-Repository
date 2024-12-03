@@ -1,0 +1,7 @@
+Lab 6:
+
+cp ~/lab05-$MYGIT/NOX/NOX.homologsf.al.mid.treefile ~/lab06-$MYGIT/NOX/NOX.homologs.al.mid.treefile
+java -jar ~/tools/Notung-3.0_24-beta/Notung-3.0_24-beta.jar -s ~/lab05-$MYGIT/species.tre -g ~/lab06-$MYGIT/NOX/NOX.homologsf.pruned.treefile --reconcile --speciestag prefix --savepng --events --outputdir ~/lab06-$MYGIT/NOX/
+python2.7 ~/tools/recPhyloXML/python/NOTUNGtoRecPhyloXML.py -g ~/lab06-$MYGIT/NOX/NOX.homologsf.pruned.treefile.rec.ntg --include.species
+thirdkind -Iie -D 40 -f ~/lab06-$MYGIT/NOX/NOX.homologsf.al.mid.treefile.rec.ntg.xml -o  ~/lab06-$MYGIT/NOX/NOX.homologsf.al.mid.treefile.rec.svg
+convert  -density 150 ~/lab06-$MYGIT/NOX/NOX.homologsf.al.mid.treefile.rec.svg ~/lab06-$MYGIT/NOX/NOX.homologsf.al.mid.treefile.rec.pdf
