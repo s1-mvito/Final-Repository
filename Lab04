@@ -1,0 +1,10 @@
+Lab 4:
+
+muscle -align ~/lab04-s1-mvito/toy.fas -output ~/lab04-s1-mvito/toy.al.fas
+Rscript --vanilla ~/lab04-$MYGIT/plotMSA.R  ~/lab04-$MYGIT/NOX/NOX.homologs.al.fas
+pdflatex /home/bio312-user/lab04-s1-mvito/NOX/NOX.homologs.al.fas.tex
+alignbuddy  -al  ~/lab04-$MYGIT/NOX/NOX.homologs.al.fas
+alignbuddy -trm all  ~/lab04-$MYGIT/NOX/NOX.homologs.al.fas | alignbuddy  -al
+alignbuddy -dinv 'ambig' ~/lab04-$MYGIT/NOX/NOX.homologs.al.fas | alignbuddy  -al
+t_coffee -other_pg seq_reformat -in ~/lab04-$MYGIT/NOX/NOX.homologs.al.fas -output sim
+ alignbuddy -pi ~/lab04-$MYGIT/NOX/NOX.homologs.al.fas | awk ' (NR>2)  { for (i=2;i<=NF  ;i++){ sum+=$i;num++} } END{ print(100*sum/num) } '
