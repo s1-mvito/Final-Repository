@@ -1,0 +1,14 @@
+Lab 5:
+
+sed 's/ /_/g'  ~/lab04-$MYGIT/NOX/NOX.homologs.al.fas | seqkit grep -v -r -p "dupelabel" >  ~/lab05-$MYGIT/NOX/NOX.homologsf.al.fas
+iqtree -s NOX.homologsf.al.fas -bb 1000 -nt 2 
+nw_display ~/lab05-$MYGIT/NOX/NOX.homologsf.al.fas.treefile
+Rscript --vanilla ~/lab05-$MYGIT/plotUnrooted.R  ~/lab05-$MYGIT/NOX/NOX.homologsf.al.fas.treefile ~/lab05-$MYGIT/NOX/NOX.homologsf.al.fas.treefile.pdf 0.4 15
+ gotree reroot midpoint -i ~/lab05-$MYGIT/NOX/NOX.homologsf.al.fas.treefile -o ~/lab05-$MYGIT/NOX/NOX.homologsf.al.mid.treefile
+nw_order -c n ~/lab05-$MYGIT/NOX/NOX.homologsf.al.mid.treefile  | nw_display -
+nw_order -c n ~/lab05-$MYGIT/NOX/NOX.homologsf.al.mid.treefile | nw_display -w 1000 -b 'opacity:0' -s  >  ~/lab05-$MYGIT/NOX/NOX.homologsf.al.mid.treefile.svg -
+convert  ~/lab05-$MYGIT/NOX/NOX.homologsf.al.mid.treefile.svg  ~/lab05-$MYGIT/NOX/NOX.homologsf.al.mid.treefile.pdf
+nw_order -c n ~/lab05-$MYGIT/NOX/NOX.homologsf.al.mid.treefile | nw_topology - | nw_display -s  -w 1000 > ~/lab05-$MYGIT/NOX/NOX.homologsf.al.midCl.treefile.svg -
+ convert ~/lab05-$MYGIT/NOX/NOX.homologsf.al.midCl.treefile.svg ~/lab05-$MYGIT/NOX/NOX.homologsf.al.midCl.treefile.pdf
+nw_reroot ~/lab05-$MYGIT/NOX/NOX.homologsf.al.fas.treefile H.sapiens_HBG1_hemoglobin_subunit_gamma1 H.sapiens_HBG2_hemoglobin_subunit_gamma2 H.sapiens_HBB_hemoglobin_subunit_beta H.sapiens_HBD_hemoglobin_subunit_delta >~/lab05-$MYGIT/NOX/NOX.homologsf.outgroupbeta.treefile
+ nw_order -c n ~/lab05-$MYGIT/NOX/NOX.homologsf.outgroupbeta.treefile | nw_topology - | nw_display -s  -w 1000 > ~/lab05-$MYGIT/globins/globins.homologsf.outgroupbeta.treefile.svg
